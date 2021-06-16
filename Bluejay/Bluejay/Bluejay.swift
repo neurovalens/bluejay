@@ -41,7 +41,7 @@ public class Bluejay: NSObject { //swiftlint:disable:this type_body_length
     private var connectingPeripheral: Peripheral?
 
     /// Reference to a peripheral that is connected. If this is nil, then the peripheral should either be disconnected or still connecting. This is used to help determine the state of the peripheral's connection.
-    private var connectedPeripheral: Peripheral?
+    private(set) var connectedPeripheral: Peripheral?
 
     /// The previous connection timeout used.
     private var previousConnectionTimeout: Timeout?
