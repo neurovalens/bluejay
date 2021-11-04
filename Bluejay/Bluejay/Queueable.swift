@@ -12,7 +12,7 @@ import Foundation
 /**
  Defines the properties and behaviours of all Bluetooth operations that can be added to the Bluejay queue for ordered execution.
  */
-protocol Queueable: class {
+protocol Queueable: AnyObject {
 
     var queue: Queue? { get set }
 

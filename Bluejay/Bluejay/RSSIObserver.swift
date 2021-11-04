@@ -11,7 +11,7 @@ import Foundation
 /**
  A protocol allowing conforming objects to monitor the RSSI changes of a connected peripheral.
 */
-public protocol RSSIObserver: class {
+public protocol RSSIObserver: AnyObject {
     /**
      * Called whenever a peripheral's RSSI value changes.
      *

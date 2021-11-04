@@ -266,7 +266,7 @@ class Peripheral: NSObject {
     func broadcastErrorToListeners(_ error: Error) {
         listeners.values.forEach { $0.0?(.failure(error)) }
     }
-    
+
     /// Ask for the peripheral's maximum payload length in bytes for a single write request.
     public func maximumWriteValueLength(`for` writeType: CBCharacteristicWriteType) -> Int {
         return cbPeripheral.maximumWriteValueLength(for: writeType)
@@ -295,7 +295,7 @@ extension Peripheral: CBPeripheralDelegate {
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         handle(event: .didWriteCharacteristic(characteristic), error: error as NSError?)
     }
-    
+
     /// Captures CoreBluetooth's peripheral is ready to send write without response event and pass it to Bluejay's queue for processing.
     func peripheralIsReady(toSendWriteWithoutResponse peripheral: CBPeripheral) {
         handle(event: .isReadyToWriteWithoutResponse, error: nil)

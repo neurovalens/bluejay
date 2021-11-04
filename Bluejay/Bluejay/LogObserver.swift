@@ -11,7 +11,7 @@ import Foundation
 /**
  A protocol allowing conforming objects to monitor log file changes.
  */
-public protocol LogObserver: class {
+public protocol LogObserver: AnyObject {
     /**
      * Called whenever a debug log message from the library is generated. Note, this callback may occur on an arbitrary thread, client is responsible for ensuring thread safety
      * of any code called from this.
