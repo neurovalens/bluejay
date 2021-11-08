@@ -9,7 +9,7 @@
 import Foundation
 
 /// Contractualize communication between the peripheral and its associated Bluejay instance.
-protocol PeripheralDelegate: class {
+protocol PeripheralDelegate: AnyObject {
     /// The peripheral requires queueing an operation.
     func requested(operation: Operation, from peripheral: Peripheral)
 

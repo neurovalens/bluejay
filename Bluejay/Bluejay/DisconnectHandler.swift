@@ -13,7 +13,7 @@ import Foundation
  
  - Attention: Be careful with how you organize app and Bluejay logic inside your connect, explicit disconnect, the disconnect handler callbacks. It may be easy to create redundant or conflicting code. As a rule of thumb, we recommend putting light weight and repeatable logic, such as UI updates, inside your connect and disconnect callbacks. And for more major operations such as restarting any Bluetooth tasks, use the disconnect handler.
 */
-public protocol DisconnectHandler: class {
+public protocol DisconnectHandler: AnyObject {
     /**
      Notifies the delegate that the peripheral is fully disconnected.
      

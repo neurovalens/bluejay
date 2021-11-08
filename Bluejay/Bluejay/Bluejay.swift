@@ -6,9 +6,9 @@
 //  Copyright © 2017 Steamclock Software. All rights reserved.
 //
 
+import CoreBluetooth
 import Foundation
 import UIKit
-import CoreBluetooth
 
 /**
  Bluejay is a simple wrapper around CoreBluetooth that focuses on making a common usage case as straight forward as possible: a single connected peripheral that the user is interacting with regularly (think most personal electronics devices that have an associated iOS app: fitness trackers, guitar amps, etc).

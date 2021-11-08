@@ -21,7 +21,7 @@ import Foundation
     * `func connected(to peripheral: PeripheralIdentifier)`
     * `func disconnected(from peripheral: PeripheralIdentifier)`
 */
-public protocol ConnectionObserver: class {
+public protocol ConnectionObserver: AnyObject {
 
     /// Called whenever Bluetooth availability changes, as well as when an object first subscribes to become a ConnectionObserver.
     func bluetoothAvailable(_ available: Bool, state: CBManagerState)

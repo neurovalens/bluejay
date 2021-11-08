@@ -19,7 +19,11 @@ public struct CharacteristicIdentifier {
 
     /// Create a `CharacteristicIdentifier` using a `CBCharacterstic`.
     public init(_ cbCharacteristic: CBCharacteristic) {
+        #if compiler(>=5.5)
+        self.service = ServiceIdentifier(uuid: cbCharacteristic.service!.uuid)
+        #else
         self.service = ServiceIdentifier(uuid: cbCharacteristic.service.uuid)
+        #endif
         self.uuid = cbCharacteristic.uuid
     }
 
@@ -27,7 +31,6 @@ public struct CharacteristicIdentifier {
     public var description: String {
         return "Characteristic: \(uuid.uuidString), Service: \(service.uuid.uuidString)"
     }
-
     /**
      * Create a `CharacteristicIdentifier` using a string and a `ServiceIdentifier`. Please supply a valid 128-bit UUID, or a valid 16 or 32-bit commonly used UUID.
      *
@@ -46,7 +49,12 @@ public struct CharacteristicIdentifier {
 
     /// Check equality between a `CharacteristicIdentifier` and a `CBCharacterstic`.
     public static func == (lhs: CharacteristicIdentifier, rhs: CBCharacteristic) -> Bool {
-        return (lhs.uuid == rhs.uuid) && (lhs.service.uuid == rhs.service.uuid)
+        #if compiler(>=5.5)
+        guard let rsService = rhs.service else { return false }
+        #else
+        let rsService = rhs.service
+        #endif
+        return (lhs.uuid == rhs.uuid) && (lhs.service.uuid == rsService.uuid)
     }
 }
 
@@ -55,6 +63,7 @@ extension CharacteristicIdentifier: Hashable {
     public static func == (lhs: CharacteristicIdentifier, rhs: CharacteristicIdentifier) -> Bool {
         return (lhs.uuid == rhs.uuid) && (lhs.service.uuid == rhs.service.uuid)
     }
+
     /// The hash value of the `CBUUID`.
     public func hash(into hasher: inout Hasher) {
         hasher.combine(uuid)

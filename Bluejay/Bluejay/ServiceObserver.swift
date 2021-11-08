@@ -11,7 +11,7 @@ import Foundation
 /**
  A protocol allowing conforming objects to monitor the services changes of a connected peripheral.
  */
-public protocol ServiceObserver: class {
+public protocol ServiceObserver: AnyObject {
     /**
      * Called whenever a peripheral's services change.
      *
